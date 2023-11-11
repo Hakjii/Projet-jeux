@@ -19,3 +19,4 @@ with open("Characters.csv", mode='r', encoding='utf-8') as f:
         characters_tab.append(dico)
     
 print(characters_tab)
+
