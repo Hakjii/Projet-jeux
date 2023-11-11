@@ -28,7 +28,8 @@ def tour_de_jeu():
     tirage_joueur = [randint(10,25) for i in range (4)]
 
 # tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste
-
+def tour_personnage():
+    
 
 
 
