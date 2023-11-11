@@ -5,6 +5,8 @@ Auteurs : Thibault BEN GRINE
           Pierrick LEFEVRE
 Lien vers le github : https://github.com/Hakjii/Projet-jeux
 '''
+from random import randint
+
 characters_tab = []
 with open("Characters.csv", mode='r', encoding='utf-8') as f:
     lines = f.readlines()
@@ -18,5 +20,15 @@ with open("Characters.csv", mode='r', encoding='utf-8') as f:
             dico[keys[i]] = values[i]
         characters_tab.append(dico)
     
-print(characters_tab)
+# prend le fichier csv et le transforme en liste de dicos suivant la 
+# méthode du cours 3_5P
+
+def tour_de_jeu():
+    tirage_maitre_du_jeu = [randint(10,25) for i in range (4)]
+    tirage_joueur = [randint(10,25) for i in range (4)]
+
+# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste
+
+
+
 
