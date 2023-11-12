@@ -57,4 +57,3 @@ def tour_des_personnages():
         print(f"{personnage['Name']} a obtenu un score de {score}. Tirage maître : {tirage_maitre}, Tirage joueur : {tirage_joueur}")
     return scores
 # fait le calcul des scores pour tous les personnages et print leur score
-tour_des_personnages()
