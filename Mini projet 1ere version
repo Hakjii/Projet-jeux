@@ -7,29 +7,27 @@ Lien vers le github : https://github.com/Hakjii/Projet-jeux
 '''
 from random import randint
 
-characters_tab = []
+def tour_de_jeu():
+    tirage_maitre_du_jeu = [randint(10,25) for i in range(4)]
+    tirage_joueur = [randint(10,25) for i in range(4)]
+    return(tirage_maitre_du_jeu, tirage_joueur)
+# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste
+
+tableau_personnages = []
 with open("Characters.csv", mode='r', encoding='utf-8') as f:
     lines = f.readlines()
     key_line = lines[0].strip()
-    keys = key_line.split(";")
+    cles = key_line.split(";")
     for line in lines[1:]:
         line = line.strip()
-        values = line.split(';')
+        valeurs = line.split(';')
         dico = {}
-        for i in range(len(keys)):
-            dico[keys[i]] = values[i]
-        characters_tab.append(dico)
+        for i in range(len(cles)):
+            dico[cles[i]] = valeurs[i]
+        tableau_personnages.append(dico)
     
 # prend le fichier csv et le transforme en liste de dicos suivant la 
 # méthode du cours 3_5P
 
-def tour_de_jeu():
-    tirage_maitre_du_jeu = [randint(10,25) for i in range (4)]
-    tirage_joueur = [randint(10,25) for i in range (4)]
-
-# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste
-def tour_personnage():
+def tour_du_personnage():
     
-
-
-
