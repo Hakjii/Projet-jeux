@@ -40,13 +40,13 @@ def calculer_score(maitre_du_jeu, joueur):
         return 20
     else:
         return 0
-
+# calcule les scores du joueur en fonction du nombre d'éléments similaires avec les éléments du mdj
 def tour_de_jeu():
     tirage_maitre_du_jeu = [randint(10, 25) for i in range(4)]
     tirage_joueur = [randint(10, 25) for i in range(4)]
     score = calculer_score(tirage_maitre_du_jeu, tirage_joueur)
     return tirage_maitre_du_jeu, tirage_joueur, score
-# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste
+# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste + un calcul des scores a partir de la fonction calculer score
 
 def tour_des_personnages():
     scores = {}
@@ -56,4 +56,5 @@ def tour_des_personnages():
         scores["personnage"] = score
         print(f"{personnage['Name']} a obtenu un score de {score}. Tirage maître : {tirage_maitre}, Tirage joueur : {tirage_joueur}")
     return scores
+# fait le calcul des scores pour tous les personnages et print leur score
 tour_des_personnages()
