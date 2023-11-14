@@ -1,0 +1,68 @@
+# coding : utf-8
+'''
+Auteurs : Thibault BEN GRINE
+          Baptiste QUANTIN
+          Pierrick LEFEVRE
+Lien vers le github : https://github.com/Hakjii/Projet-jeux
+'''
+from random import randint
+
+# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste
+
+tableau_personnages = []
+with open("Characters.csv", mode='r', encoding='utf-8') as f:
+    lines = f.readlines()
+    key_line = lines[0].strip()
+    cles = key_line.split(";")
+    for line in lines[1:]:
+        line = line.strip()
+        valeurs = line.split(';')
+        dico = {}
+        for i in range(len(cles)):
+            dico[cles[i]] = valeurs[i]
+        tableau_personnages.append(dico)
+    
+# prend le fichier csv et le transforme en liste de dicos suivant la 
+# méthode du cours 3_5P
+def calculer_score(maitre_du_jeu, joueur):
+    """
+    Calcule le score du joueur en fonction du nombre d'éléments similaires entre le tirage du joueur et celui du maitre du jeu
+    Entrées : deux listes correspondant au tirage du joueur et celui du maitre du jeu
+    Sortie : des entiers (0, 1, 3, 8 ou 20) correspondant aux score selon le nombre d'éléments similaires
+    """
+    elements_similaires = 0
+    for nombre in maitre_du_jeu:
+        if nombre in joueur:
+            elements_similaires += 1
+    
+    if elements_similaires == 1:
+        return 1
+    elif elements_similaires == 2:
+        return 3
+    elif elements_similaires == 3:
+        return 8
+    elif elements_similaires == 4:
+        return 20
+    else:
+        return 0
+# calcule les scores du joueur en fonction du nombre d'éléments similaires avec les éléments du mdj
+def tour_de_jeu():
+    """
+    Permet de faire un tour de jeu à l'aide de la fonction qui
+    Entrées : pas d'entrées
+    Sortie : un nombre entier compris dans (0, 1, 3, 8 ou 20) correspondant au score du personnage
+
+    """
+    tirage_maitre_du_jeu = [randint(10, 25) for i in range(4)]
+    tirage_joueur = [randint(10, 25) for i in range(4)]
+    score_du_personnage = calculer_score(tirage_maitre_du_jeu, tirage_joueur)
+    return score_du_personnage
+# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste + un calcul des scores a partir de la fonction calculer score
+
+def tour_des_personnages():
+    """
+    Faire jouer tous les personnages et associer un score à chaque personnage
+    Entrée : rien
+    Sortie : un couple personnage : score 
+    """
+score_perso = tour_de_jeu()
