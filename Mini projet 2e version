@@ -24,11 +24,27 @@ with open("Characters.csv", mode='r', encoding='utf-8') as f:
     
 # prend le fichier csv et le transforme en liste de dicos suivant la 
 # méthode du cours 3_5P
+
+def tour_de_jeu():
+    """
+    Permet de faire un tour de jeu à l'aide de la fonction qui choisi aléatoirement 4 nombre
+    entre 10 et 25
+    Entrées : pas d'entrées
+    Sortie : 4 nombre entier compris entre 10 et 25 
+    """
+    tirage_maitre_du_jeu = [randint(10, 25) for i in range(4)]
+    tirage_joueur = [randint(10, 25) for i in range(4)]
+    return tirage_maitre_du_jeu, tirage_joueur
+# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste + un calcul des 
+# scores a partir de la fonction calculer score
+
 def calculer_score(maitre_du_jeu, joueur):
     """
-    Calcule le score du joueur en fonction du nombre d'éléments similaires entre le tirage du joueur et celui du maitre du jeu
+    Calcule le score du joueur en fonction du nombre d'éléments similaires entre le tirage du joueur 
+    et celui du maitre du jeu
     Entrées : deux listes correspondant au tirage du joueur et celui du maitre du jeu
-    Sortie : des entiers (0, 1, 3, 8 ou 20) correspondant aux score selon le nombre d'éléments similaires
+    Sortie : des entiers (0, 1, 3, 8 ou 20) correspondant aux score du personnage selon le nombre
+    d'éléments similaires
     """
     elements_similaires = 0
     for nombre in maitre_du_jeu:
@@ -46,23 +62,11 @@ def calculer_score(maitre_du_jeu, joueur):
     else:
         return 0
 # calcule les scores du joueur en fonction du nombre d'éléments similaires avec les éléments du mdj
-def tour_de_jeu():
-    """
-    Permet de faire un tour de jeu à l'aide de la fonction qui
-    Entrées : pas d'entrées
-    Sortie : un nombre entier compris dans (0, 1, 3, 8 ou 20) correspondant au score du personnage
 
-    """
-    tirage_maitre_du_jeu = [randint(10, 25) for i in range(4)]
-    tirage_joueur = [randint(10, 25) for i in range(4)]
-    score_du_personnage = calculer_score(tirage_maitre_du_jeu, tirage_joueur)
-    return score_du_personnage
-# tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste + un calcul des scores a partir de la fonction calculer score
 
-def tour_des_personnages():
-    """
-    Faire jouer tous les personnages et associer un score à chaque personnage
-    Entrée : rien
-    Sortie : un couple personnage : score 
-    """
-score_perso = tour_de_jeu()
+# fait jouer tous les personnages et associer un score à chaque personnage
+for score_name in tableau_personnages:
+    score_name = tour_de_jeu()
+for j in tableau_personnages:
+    nom_du_joueur = j['Name']
+    print(f'Le joueur {nom_du_joueur} a fait un score de {score_name}')
