@@ -91,7 +91,7 @@ for personnage in tableau_personnages:
     moyenne += score_total
 moyenne = moyenne / len(tableau_personnages)
 
-print('Name : Score\n')
+print('Nom : Score\n')
 for pers in range(len(scores_personnages)):
     print(scores_personnages[pers][0] + ' : ' + str(scores_personnages[pers][1]))
 print('\nMoyenne : ')
