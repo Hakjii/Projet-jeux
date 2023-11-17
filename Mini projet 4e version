@@ -3,7 +3,13 @@
 Auteurs : Thibault BEN GRINE
           Baptiste QUANTIN
           Pierrick LEFEVRE
+Licence : Creative commons  CC BY-NC-SA
+Version : 4.2
 Lien vers le github : https://github.com/Hakjii/Projet-jeux
+
+Ce programme a été crée pour le projet Jeux du cours de NSI 1ère de M.Landry
+Le jeux choisi est mastermind
+Ce programme permet donc de faire jouer plusieurs joueurs de manière aléatoire et ensuite de les trier par score croissant et enfin de donner une moyenne de leurs scores
 '''
 from random import randint
 
@@ -28,13 +34,15 @@ with open("Characters.csv", mode='r', encoding='utf-8') as f:
 
 def tour_de_jeu():
     """
-    Permet de faire un tour de jeu à l'aide de la fonction qui choisi aléatoirement 4 nombre
+    Permet de faire un tour de jeu à l'aide de la fonction randint qui choisi aléatoirement 4 nombre
     entre 10 et 25
     Entrées : pas d'entrées
     Sortie : 4 nombre entier compris entre 10 et 25 pour le maitre du jeu et pour le joueur
     """
     tirage_maitre_du_jeu = [randint(10, 25) for i in range(4)]
     tirage_joueur = [randint(10, 25) for i in range(4)]
+
+    assert type(tirage_joueur) and type(tirage_maitre_du_jeu) == list, "les tirages doivent être de type list"
 
     return tirage_maitre_du_jeu, tirage_joueur
 # tirage de 4 nombres aléatoires pour le joueur et le mdj dans une liste + un calcul des 
@@ -52,7 +60,9 @@ def calculer_score(maitre_du_jeu, joueur):
     for nombre in maitre_du_jeu:
         if nombre in joueur:
             elements_similaires += 1
-    
+
+    assert elements_similaires >= 0 , "il n'est pas possible d'avoir un nombre d'éléments similaires négatif"
+
     if elements_similaires == 1:
         return 1
     elif elements_similaires == 2:
@@ -66,6 +76,11 @@ def calculer_score(maitre_du_jeu, joueur):
 # calcule les scores du joueur en fonction du nombre d'éléments similaires avec les éléments du mdj
 
 def tour_personnage(personnage):
+    """
+    Permet de faire jouer le personnage et de calculer son score grâce aux fonctions précédentes
+    Entrée : le personnage qu'on souhaite faire jouer
+    Sortie : un score correspondant au personnage
+    """
     tirage_maitre_du_jeu, tirage_joueur = tour_de_jeu()
     score = calculer_score(tirage_maitre_du_jeu, tirage_joueur)
     return score
@@ -92,7 +107,7 @@ for personnage in tableau_personnages:
 moyenne = moyenne / len(tableau_personnages)
 
 print('Nom : Score\n')
+
 for pers in range(len(scores_personnages)):
     print(scores_personnages[pers][0] + ' : ' + str(scores_personnages[pers][1]))
-print('\nMoyenne : ')
-print(moyenne)
+print(f'\nMoyenne : \n{moyenne}')
